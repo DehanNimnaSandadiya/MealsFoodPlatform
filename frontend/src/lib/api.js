@@ -2,11 +2,13 @@
  * API client: base URL + optional Clerk token for authenticated requests.
  */
 
-const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+const rawBase = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+const BASE = typeof rawBase === "string" ? rawBase.replace(/\/+$/, "") : rawBase;
 
 export const api = {
   async request(path, options = {}, getToken) {
-    const url = path.startsWith("http") ? path : `${BASE}${path}`;
+    const p = path.startsWith("/") ? path : `/${path}`;
+    const url = path.startsWith("http") ? path : `${BASE}${p}`;
     const headers = {
       "Content-Type": "application/json",
       ...(options.headers || {}),
