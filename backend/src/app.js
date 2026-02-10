@@ -25,21 +25,28 @@ dotenv.config();
 const app = express();
 const logger = pino({ level: process.env.LOG_LEVEL || "info" });
 
-app.use(pinoHttp({ logger }));
-app.use(helmet());
-
-// CORS: allow Vercel/Render testing. Use * or leave unset to allow any origin; otherwise set CORS_ORIGIN to comma-separated list.
+// CORS first so preflight OPTIONS always gets correct headers (before helmet/rateLimit).
 const corsOrigin = process.env.CORS_ORIGIN?.trim();
+const allowAll = !corsOrigin || corsOrigin === "*";
+const allowedList = allowAll ? [] : corsOrigin.split(",").map((s) => s.trim());
+// Allow *.vercel.app for Vercel deployments when using allow-all or when not in list.
+const vercelOrigin = (origin, cb) => {
+  if (allowAll) return cb(null, true);
+  if (allowedList.includes(origin)) return cb(null, true);
+  if (origin && /^https:\/\/[a-z0-9.-]+\.vercel\.app$/i.test(origin)) return cb(null, true);
+  return cb(null, allowedList.length ? false : true);
+};
 const corsOptions = {
-  origin:
-    !corsOrigin || corsOrigin === "*"
-      ? true
-      : corsOrigin.split(",").map((s) => s.trim()),
+  origin: allowAll && allowedList.length === 0 ? true : vercelOrigin,
   credentials: true,
   methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 204,
 };
 app.use(cors(corsOptions));
+
+app.use(pinoHttp({ logger }));
+app.use(helmet());
 app.use(
   rateLimit({
     windowMs: 60 * 1000,
