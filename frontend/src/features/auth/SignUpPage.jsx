@@ -1,6 +1,6 @@
 import { SignUp } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
-import { UtensilsCrossed } from "lucide-react";
+import { BrandLogo } from "../../components/BrandLogo";
 
 const BRAND = "#006B3D";
 
@@ -13,9 +13,8 @@ export function SignUpPage() {
       {/* Left: branding */}
       <div className="relative hidden flex-col justify-between bg-black p-8 text-white md:flex md:p-10">
         <div>
-          <Link to="/" className="inline-flex items-center gap-2">
-            <UtensilsCrossed className="h-8 w-8" style={{ color: BRAND }} />
-            <span className="text-xl font-semibold">meals</span>
+          <Link to="/" className="inline-flex items-center gap-2" aria-label="meals">
+            <BrandLogo size={40} className="shrink-0" />
           </Link>
           <p className="mt-1 text-sm text-white/70">good food good life.</p>
         </div>
@@ -37,7 +36,13 @@ export function SignUpPage() {
       <div className="flex flex-col justify-center bg-white px-6 py-8 md:px-12">
         <div className="mx-auto w-full max-w-sm">
           <h1 className="font-display text-2xl font-bold text-black">Create an account</h1>
-          <p className="mt-1 text-sm text-black/60">Join meals to order from home chefs near you</p>
+          <p className="mt-1 text-sm text-black/60">
+            Join{" "}
+            <span className="inline-flex align-middle">
+              <BrandLogo size={18} className="inline-block" />
+            </span>{" "}
+            to order from home chefs near you
+          </p>
           <div className="mt-8 [&_.cl-rootBox]:w-full [&_.cl-card]:shadow-none [&_.cl-card]:border [&_.cl-card]:border-black/10">
             <SignUp
               routing="path"

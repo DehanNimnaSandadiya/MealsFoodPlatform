@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "../../lib/api";
 import { useAuth } from "@clerk/clerk-react";
 import {
-  UtensilsCrossed,
   ArrowRight,
   MapPin,
   Clock,
@@ -14,6 +13,7 @@ import {
   Search,
   ShoppingBag,
 } from "lucide-react";
+import { BrandLogo } from "../../components/BrandLogo";
 
 const BRAND = "#006B3D";
 
@@ -304,9 +304,8 @@ export function LandingPage() {
       <footer className="border-t border-black/10 bg-white py-12 md:py-16">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-            <Link to="/" className="flex items-center gap-2 font-display text-xl font-bold text-black">
-              <UtensilsCrossed className="h-7 w-7" style={{ color: BRAND }} />
-              meals
+            <Link to="/" className="flex items-center gap-2 font-display text-xl font-bold text-black" aria-label="meals">
+              <BrandLogo size={36} className="shrink-0" />
             </Link>
             <nav className="flex flex-wrap items-center justify-center gap-6 text-sm font-medium text-black/70">
               <Link to="/student/shops" className="hover:text-black">Order food</Link>
@@ -317,7 +316,11 @@ export function LandingPage() {
             </nav>
           </div>
           <p className="mt-8 text-center text-sm text-black/50">
-            © {new Date().getFullYear()} meals. Good food, good life.
+            © {new Date().getFullYear()}{" "}
+            <span className="inline-flex align-middle">
+              <BrandLogo size={18} className="inline-block" />
+            </span>
+            . Good food, good life.
           </p>
         </div>
       </footer>

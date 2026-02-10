@@ -2,7 +2,6 @@ import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@clerk/clerk-react";
 import {
-  UtensilsCrossed,
   LayoutDashboard,
   Store,
   ShoppingCart,
@@ -15,6 +14,7 @@ import {
   Banknote,
 } from "lucide-react";
 import { api } from "../lib/api";
+import { BrandLogo } from "../components/BrandLogo";
 
 const BRAND = "#006B3D";
 
@@ -23,9 +23,8 @@ function Sidebar({ logoLabel, navItems, footer }) {
   return (
     <aside className="flex w-60 shrink-0 flex-col border-r border-black/5 bg-white shadow-sm">
       <div className="border-b border-black/5 p-5">
-        <Link to="/" className="flex items-center gap-2">
-          <UtensilsCrossed className="h-8 w-8" style={{ color: BRAND }} />
-          <span className="font-display text-lg font-bold text-black">meals</span>
+        <Link to="/" className="flex items-center gap-2" aria-label="meals">
+          <BrandLogo size={36} className="shrink-0" />
         </Link>
         <p className="mt-1 text-xs font-medium text-black/50">{logoLabel}</p>
       </div>
