@@ -24,7 +24,7 @@ function Sidebar({ logoLabel, navItems, footer }) {
     <aside className="flex w-60 shrink-0 flex-col border-r border-black/5 bg-white shadow-sm">
       <div className="border-b border-black/5 p-5">
         <Link to="/" className="flex items-center gap-2" aria-label="meals">
-          <BrandLogo size={36} className="shrink-0" />
+          <BrandLogo size={64} className="shrink-0" />
         </Link>
         <p className="mt-1 text-xs font-medium text-black/50">{logoLabel}</p>
       </div>
@@ -74,7 +74,7 @@ export function StudentDashboardLayout() {
     </div>
   );
   return (
-    <div className="flex min-h-[calc(100vh-3.5rem)] bg-white">
+    <div className="flex min-h-screen bg-white">
       <Sidebar logoLabel="Student" navItems={studentNav} footer={footer} />
       <main className="min-w-0 flex-1 overflow-auto bg-[#fafafa] p-6">
         <Outlet />
@@ -104,7 +104,7 @@ export function RiderDashboardLayout() {
     </div>
   );
   return (
-    <div className="flex min-h-[calc(100vh-3.5rem)] bg-white">
+    <div className="flex min-h-screen bg-white">
       <Sidebar logoLabel="Rider" navItems={riderNavWithPaths} footer={footer} />
       <main className="min-w-0 flex-1 overflow-auto bg-[#fafafa] p-6">
         <Outlet />
@@ -152,7 +152,7 @@ export function SellerDashboardLayout() {
     </>
   );
   return (
-    <div className="flex min-h-[calc(100vh-3.5rem)] bg-white">
+    <div className="flex min-h-screen bg-white">
       <Sidebar logoLabel="Seller" navItems={sellerNavWithPaths} footer={footer} />
       <main className="min-w-0 flex-1 overflow-auto bg-[#fafafa] p-6">
         <Outlet />
@@ -178,7 +178,7 @@ export function AdminDashboardLayout() {
     </div>
   );
   return (
-    <div className="flex min-h-[calc(100vh-3.5rem)] bg-white">
+    <div className="flex min-h-screen bg-white">
       <Sidebar logoLabel="Admin" navItems={adminNav} footer={footer} />
       <main className="min-w-0 flex-1 overflow-auto bg-[#fafafa] p-6">
         <Outlet />

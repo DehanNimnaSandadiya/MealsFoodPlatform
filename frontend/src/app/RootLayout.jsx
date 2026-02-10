@@ -11,30 +11,32 @@ export function RootLayout({ children }) {
 
   return (
     <div className="flex min-h-screen flex-col bg-[#fafafa] text-black">
-      <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 shadow-sm backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-6">
-          <Link to="/" className="flex items-center gap-2 font-display text-xl font-bold text-black" aria-label="meals">
-            <BrandLogo size={36} className="shrink-0" />
-          </Link>
-          <nav className="flex items-center gap-6">
-            <SignedOut>
-              <Link to="/sign-in" className="text-sm font-semibold text-black/80 hover:text-black">
-                Sign in
-              </Link>
-              <Link
-                to="/sign-up"
-                className="rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-95"
-                style={{ backgroundColor: BRAND }}
-              >
-                Sign up
-              </Link>
-            </SignedOut>
-            <SignedIn>
-              <UserButton afterSignOutUrl="/" />
-            </SignedIn>
-          </nav>
-        </div>
-      </header>
+      {isLanding && (
+        <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 shadow-sm backdrop-blur">
+          <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 md:px-6">
+            <Link to="/" className="flex items-center gap-2 font-display text-xl font-bold text-black" aria-label="meals">
+              <BrandLogo size={64} className="shrink-0" />
+            </Link>
+            <nav className="flex items-center gap-6">
+              <SignedOut>
+                <Link to="/sign-in" className="text-sm font-semibold text-black/80 hover:text-black">
+                  Sign in
+                </Link>
+                <Link
+                  to="/sign-up"
+                  className="rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-95"
+                  style={{ backgroundColor: BRAND }}
+                >
+                  Sign up
+                </Link>
+              </SignedOut>
+              <SignedIn>
+                <UserButton afterSignOutUrl="/" />
+              </SignedIn>
+            </nav>
+          </div>
+        </header>
+      )}
       <main className="flex-1">
         {children ?? <Outlet />}
       </main>
@@ -43,7 +45,7 @@ export function RootLayout({ children }) {
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <Link to="/" className="flex items-center gap-2 font-display font-bold text-black" aria-label="meals">
-              <BrandLogo size={28} className="shrink-0" />
+              <BrandLogo size={42} className="shrink-0" />
             </Link>
             <div className="flex gap-6 text-sm text-black/60">
               <Link to="/terms" className="hover:text-black">Terms</Link>
@@ -55,7 +57,7 @@ export function RootLayout({ children }) {
           <p className="mt-4 text-sm text-black/50">
             © {new Date().getFullYear()}{" "}
             <span className="inline-flex align-middle">
-              <BrandLogo size={18} className="inline-block" />
+              <BrandLogo size={22} className="inline-block" />
             </span>
             . Good food, good life.
           </p>

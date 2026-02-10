@@ -17,7 +17,7 @@ export function SignInPage() {
       <div className="relative hidden flex-col justify-between bg-black p-8 text-white md:flex md:p-10">
         <div>
           <Link to="/" className="inline-flex items-center gap-2" aria-label="meals">
-            <BrandLogo size={40} className="shrink-0" />
+            <BrandLogo size={56} className="shrink-0" />
           </Link>
           <p className="mt-1 text-sm text-white/70">good food good life.</p>
         </div>
