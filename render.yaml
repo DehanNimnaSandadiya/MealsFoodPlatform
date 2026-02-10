@@ -1,0 +1,14 @@
+# Render.com backend service (Node/Express)
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: meals-backend
+    runtime: node
+    rootDir: backend
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Add the rest in Render Dashboard: MONGODB_URI, CLERK_SECRET_KEY, CORS_ORIGIN, etc.
