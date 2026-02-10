@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Premium food platform – Uber Eats / PickMe style */
+@theme {
+  --color-brand: #006B3D;
+  --color-brand-hover: #005530;
+  --color-brand-light: #e6f2ed;
+  --color-danger: #dc2626;
+  --color-danger-hover: #b91c1c;
+  --color-danger-light: #fef2f2;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-display: "DM Sans", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply text-black;
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "ss02";
+  }
+}
+
+/* Card hover lift */
+.card-hover {
+  @apply transition-all duration-200;
+}
+.card-hover:hover {
+  @apply -translate-y-0.5 shadow-lg;
+}
+
+/* Button primary */
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white transition hover:opacity-95 active:scale-[0.98];
+  background-color: var(--color-brand);
+}
+.btn-primary:disabled {
+  @apply cursor-not-allowed opacity-50;
+}
+
+/* Button secondary / outline */
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-xl border-2 border-black/15 bg-white px-5 py-3 font-semibold text-black transition hover:border-black/25 hover:bg-black/[0.02] active:scale-[0.98];
+}
+
+/* Input field */
+.input-field {
+  @apply w-full rounded-xl border-2 border-black/10 bg-white px-4 py-3 text-black outline-none transition placeholder:text-black/40 focus:border-[var(--color-brand)] focus:ring-2 focus:ring-[var(--color-brand)]/20;
+}
+
+/* Badge */
+.badge {
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+}
