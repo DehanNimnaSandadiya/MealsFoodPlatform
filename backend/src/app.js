@@ -27,14 +27,19 @@ const logger = pino({ level: process.env.LOG_LEVEL || "info" });
 
 app.use(pinoHttp({ logger }));
 app.use(helmet());
-app.use(
-  cors({
-    origin: (process.env.CORS_ORIGIN || "http://localhost:5173")
-      .split(",")
-      .map((s) => s.trim()),
-    credentials: true,
-  })
-);
+
+// CORS: allow Vercel/Render testing. Use * or leave unset to allow any origin; otherwise set CORS_ORIGIN to comma-separated list.
+const corsOrigin = process.env.CORS_ORIGIN?.trim();
+const corsOptions = {
+  origin:
+    !corsOrigin || corsOrigin === "*"
+      ? true
+      : corsOrigin.split(",").map((s) => s.trim()),
+  credentials: true,
+  methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+app.use(cors(corsOptions));
 app.use(
   rateLimit({
     windowMs: 60 * 1000,
