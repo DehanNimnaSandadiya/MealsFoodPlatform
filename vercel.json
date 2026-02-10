@@ -1,6 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && npm install && npm run build",
+  "installCommand": "npm run install:all",
+  "buildCommand": "npm run build",
   "outputDirectory": "frontend/dist",
   "framework": "vite",
   "rewrites": [
